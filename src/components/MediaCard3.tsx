@@ -15,12 +15,13 @@ export default function MediaCard3() {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: '-318px', // Высота всего экрана
-        marginLeft: '1000px', // Отступ слева
+     
+        marginRight: '-1000px', // Отступ слева
       }}
     >
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345}}>
         <CardMedia
-          sx={{ height: 119 }}
+          sx={{ height: 140 }}
           image={card3}
           title="guns"
         />
