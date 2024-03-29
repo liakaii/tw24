@@ -14,7 +14,7 @@ export default function MediaCard1() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '-100px', // Высота всего экрана
+        marginTop: '80px', // Высота всего экрана
         marginLeft: '-1000px', // Отступ слева
       }}
     >
@@ -26,15 +26,15 @@ export default function MediaCard1() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Фильмы
+            Картинки
           </Typography>
           <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica
+          Лучшие фурри картинки, арты, обои за последнюю неделю
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
+          <Button size="small">Поделиться</Button>
+          <Button size="small">Прочесть</Button>
         </CardActions>
       </Card>
     </div>

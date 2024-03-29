@@ -14,7 +14,7 @@ export default function MediaCard2() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '-318px', // Высота всего экрана
+        marginTop: '-300px', // Высота всего экрана
         marginLeft: 'center', // Отступ слева
       }}
     >
@@ -26,15 +26,15 @@ export default function MediaCard2() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Картинки
+            Фильмы
           </Typography>
           <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica
+          Фильмы рекомендуемые другими пользователями
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
+          <Button size="small">Поделиться</Button>
+          <Button size="small">Прочесть</Button>
         </CardActions>
       </Card>
     </div>

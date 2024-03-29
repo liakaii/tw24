@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <h1>Новости</h1>  
+      <h1>Предложения на сегодня</h1>  
       <div>
         <ApppBar />
       </div>
