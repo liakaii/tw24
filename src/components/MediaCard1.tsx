@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -6,16 +5,23 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import card1 from '../assets/card1.png';
+import { useHistory } from 'react-router-dom';
 
 export default function MediaCard1() {
+  const history = useHistory();
+
+  const handleReadClick = () => {
+    history.push('/Arts');
+  };
+
   return (
     <div 
       style={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '80px', // Высота всего экрана
-        marginLeft: '-1000px', // Отступ слева
+        marginTop: '0px',
+        marginLeft: '-1000px',
       }}
     >
       <Card sx={{ maxWidth: 345 }}>
@@ -26,15 +32,15 @@ export default function MediaCard1() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Картинки
+            Фильмы
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-          Лучшие фурри картинки, арты, обои за последнюю неделю
+          <Typography variant="body2" color="textSecondary">
+          Фильмы рекомендуемые другими пользователями 
           </Typography>
         </CardContent>
         <CardActions>
           <Button size="small">Поделиться</Button>
-          <Button size="small">Прочесть</Button>
+          <Button size="small" onClick={handleReadClick}>Смотреть</Button>
         </CardActions>
       </Card>
     </div>

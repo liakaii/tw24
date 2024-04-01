@@ -1,55 +1,20 @@
 import './App.css';
-import ApppBar from './components/ApppBar.tsx';
-import Menuu from './components/Menuu.tsx';
-import MediaCard1 from './components/MediaCard1.tsx';
-import MediaCard2 from './components/MediaCard2.tsx';
-import MediaCard3 from './components/MediaCard3.tsx';
-
-import { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './pages/Home';
+import LoginPage from './pages/Login/login';
+import Art from './pages/Pictures/Art';
+import NotFound from './pages/404/NotFound';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <h1>Предложения на сегодня</h1>  
-      <div>
-        <ApppBar />
-      </div>
-
-      <div>
-      <MediaCard1 />
-      </div>
-
-      <div>
-      <MediaCard2 />
-      </div>
-
-      <div>
-      <MediaCard3 />
-      </div>
-
-      <div>
-        <Menuu />
-      </div>
-
-      <h0><div className="spacer"></div> {/* Пустое пространство */}
-      упражнение
-      </h0>
-
-      
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          {count}
-        </button>
-        <p>
-          Жми на кнопку каждый день и через неделю...
-        </p>
-      </div>
-      <p className="read-the-docs">
-        что происходит
-      </p>
-    </>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/Login" component={LoginPage} />
+        <Route path="/Art" component={Art} />
+        <Route component={NotFound} />  {/* Маршрут для 404 страницы */}
+      </Switch>
+    </Router>
   );
 }
 
