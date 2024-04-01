@@ -15,7 +15,21 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { useHistory } from 'react-router-dom';
-
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+import MailIcon from '@mui/icons-material/Mail';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import PhotoIcon from '@mui/icons-material/Photo';
+import ForumIcon from '@mui/icons-material/Forum';
+import VideoCallIcon from '@mui/icons-material/VideoCall';
+import SettingsIcon from '@mui/icons-material/Settings';
+import InfoIcon from '@mui/icons-material/Info';
+import SupportIcon from '@mui/icons-material/Support';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,13 +71,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function CombinedComponents() {
-
   const history = useHistory();
-
-  const handleReadClick = () => {
-    history.push('/LogIn');
-  };
-
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   const [devices, setDevices] = React.useState(() => ['laptop']);
 
   const handleDevices = (
@@ -73,6 +82,14 @@ export default function CombinedComponents() {
     if (newDevices.length) {
       setDevices(newDevices);
     }
+  };
+
+  const handleReadClick = () => {
+    history.push('/LogIn');
+  };
+
+  const toggleDrawer = (open: boolean) => () => {
+    setIsDrawerOpen(open);
   };
 
   return (
@@ -85,6 +102,7 @@ export default function CombinedComponents() {
             color="inherit"
             aria-label="menu"
             sx={{ marginRight: 2 }}
+            onClick={toggleDrawer(true)}
           >
             <MenuIcon />
           </IconButton>
@@ -100,7 +118,7 @@ export default function CombinedComponents() {
           </Search>
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Новости
+           
           </Typography>
 
           <ToggleButtonGroup
@@ -119,7 +137,69 @@ export default function CombinedComponents() {
             </ToggleButton>
           </ToggleButtonGroup>
 
-          <Button sx={{ marginLeft: '20px' }} color="inherit" onClick={handleReadClick}>Войти</Button>
+          <Button sx={{ marginLeft: '10px' }} color="inherit" onClick={handleReadClick}>Войти</Button>
+
+          <Drawer 
+    anchor="left" 
+    open={isDrawerOpen} 
+    onClose={toggleDrawer(false)}
+    sx={{
+        width: 250,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+            width: 250,
+            boxSizing: 'border-box',
+            background: 'linear-gradient(to bottom, #9AB9EF, rgba(26, 26, 26, 1 ))',
+            opacity: 1,
+        },
+    }}
+>
+            <div
+                onClick={toggleDrawer(false)}
+                onKeyDown={toggleDrawer(false)}
+            >
+              <List>
+                <ListItem button>
+                  <ListItemIcon><AccountCircleIcon /></ListItemIcon>
+                  <ListItemText primary="Профиль" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon><MailIcon /></ListItemIcon>
+                  <ListItemText primary="Сообщения" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon><ForumIcon /></ListItemIcon>
+                  <ListItemText primary="Треды" />
+                </ListItem>
+                <Divider />
+                <ListItem button>
+                  <ListItemIcon><ContactsIcon /></ListItemIcon>
+                  <ListItemText primary="Контакты" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon><PhotoIcon /></ListItemIcon>
+                  <ListItemText primary="Фотографии" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon><VideoCallIcon /></ListItemIcon>
+                  <ListItemText primary="Видео" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon><SettingsIcon /></ListItemIcon>
+                  <ListItemText primary="Настройки" />
+                </ListItem>
+                <Divider />
+                <ListItem button>
+                  <ListItemIcon><InfoIcon /></ListItemIcon>
+                  <ListItemText primary="Информация" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon><SupportIcon /></ListItemIcon>
+                  <ListItemText primary="Поддержка" />
+                </ListItem>
+              </List>
+            </div>
+          </Drawer>
         </Toolbar>
       </AppBar>
     </Box>
