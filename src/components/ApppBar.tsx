@@ -92,6 +92,11 @@ export default function CombinedComponents() {
     setIsDrawerOpen(open);
   };
 
+  const handleInfoClick = () => {
+    history.push('/TechnicalWork');
+  };
+  
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" sx={{ width: '100%' }}>
@@ -159,41 +164,41 @@ export default function CombinedComponents() {
                 onKeyDown={toggleDrawer(false)}
             >
               <List>
-                <ListItem button>
+                <ListItem button onClick={handleInfoClick}>
                   <ListItemIcon><AccountCircleIcon /></ListItemIcon>
                   <ListItemText primary="Профиль" />
                 </ListItem>
-                <ListItem button>
+                <ListItem button onClick={handleInfoClick}>
                   <ListItemIcon><MailIcon /></ListItemIcon>
                   <ListItemText primary="Сообщения" />
                 </ListItem>
-                <ListItem button>
+                <ListItem button onClick={handleInfoClick}>
                   <ListItemIcon><ForumIcon /></ListItemIcon>
                   <ListItemText primary="Треды" />
                 </ListItem>
                 <Divider />
-                <ListItem button>
+                <ListItem button onClick={handleInfoClick}>
                   <ListItemIcon><ContactsIcon /></ListItemIcon>
                   <ListItemText primary="Контакты" />
                 </ListItem>
-                <ListItem button>
+                <ListItem button onClick={handleInfoClick}>
                   <ListItemIcon><PhotoIcon /></ListItemIcon>
                   <ListItemText primary="Фотографии" />
                 </ListItem>
-                <ListItem button>
+                <ListItem button onClick={handleInfoClick}>
                   <ListItemIcon><VideoCallIcon /></ListItemIcon>
                   <ListItemText primary="Видео" />
                 </ListItem>
-                <ListItem button>
+                <ListItem button onClick={handleInfoClick}>
                   <ListItemIcon><SettingsIcon /></ListItemIcon>
                   <ListItemText primary="Настройки" />
                 </ListItem>
                 <Divider />
-                <ListItem button>
-                  <ListItemIcon><InfoIcon /></ListItemIcon>
-                  <ListItemText primary="Информация" />
+                <ListItem button onClick={handleInfoClick}>
+                <ListItemIcon><InfoIcon /></ListItemIcon>
+                <ListItemText primary="Информация" />
                 </ListItem>
-                <ListItem button>
+                <ListItem button onClick={handleInfoClick}>
                   <ListItemIcon><SupportIcon /></ListItemIcon>
                   <ListItemText primary="Поддержка" />
                 </ListItem>

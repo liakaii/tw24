@@ -58,10 +58,6 @@ const LoginForm = () => {
       return;
     }
 
-    // Здесь вы можете добавить вашу логику аутентификации
-    // Например, запрос к API для проверки учетных данных
-
-    // Переброс на главную страницу
     history.push('/');
   };
 
@@ -93,6 +89,7 @@ const LoginForm = () => {
           onChange={handleUsernameChange}
           error={!!error}
           helperText={error}
+          sx={{ '& input': { color: 'lightblue' } }}
         />
         <TextField
           margin="normal"
@@ -105,6 +102,7 @@ const LoginForm = () => {
           autoComplete="current-password"
           value={password}
           onChange={handlePasswordChange}
+          sx={{ '& input': { color: 'lightblue' } }}
         />
         <Button
           type="button"

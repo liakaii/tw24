@@ -3,6 +3,7 @@ import Menuu from '../components/Menuu.tsx';
 import MediaCard1 from '../components/MediaCard1.tsx';
 import MediaCard2 from '../components/MediaCard2.tsx';
 import MediaCard3 from '../components/MediaCard3.tsx';
+import Leather from '../components/Leather.tsx';
 import { useState } from 'react';
 
 function Home() {
@@ -22,6 +23,8 @@ function Home() {
         <div><MediaCard3 /></div>
 
         <div><Menuu /></div>
+
+        <div><Leather username={''} distance={''} phoneNumber={''} /></div>
 
         <h1><div className="spacer"></div>упражнение</h1>
 
