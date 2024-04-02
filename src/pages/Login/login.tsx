@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Box, Button, TextField, Typography, Container } from '@mui/material';
+import { Box, Button, TextField, Typography, Container, IconButton } from '@mui/material';
 import { styled } from '@mui/system';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useHistory } from 'react-router-dom';
 
 const StyledLoginForm = styled('form')({
   display: 'flex',
@@ -10,16 +12,70 @@ const StyledLoginForm = styled('form')({
   marginTop: '8px',
 });
 
+const BackButton = styled(IconButton)({
+  position: 'absolute',
+  top: 20,
+  left: 20,
+  zIndex: 1,
+  
+  borderRadius: '50%',
+  padding: '10px',
+  '&:hover': {
+    
+  },
+});
+
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isValid, setIsValid] = useState(false);
+  const history = useHistory();
+
+  const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+  const handleUsernameChange = (e: { target: { value: any; }; }) => {
+    const value = e.target.value;
+    setUsername(value);
+
+    if (!emailRegex.test(value)) {
+      setError('Неверный индекс почты');
+      setIsValid(false);
+    } else {
+      setError('');
+      setIsValid(password.length > 0);
+    }
+  };
+
+  const handlePasswordChange = (e: { target: { value: any; }; }) => {
+    const value = e.target.value;
+    setPassword(value);
+    setIsValid(value.length > 0 && emailRegex.test(username));
+  };
 
   const handleLogin = () => {
-    console.log(`Username: ${username}, Password: ${password}`);
+    if (error || !isValid) {
+      return;
+    }
+
+    // Здесь вы можете добавить вашу логику аутентификации
+    // Например, запрос к API для проверки учетных данных
+
+    // Переброс на главную страницу
+    history.push('/');
+  };
+
+  const handleGoBack = () => {
+    history.push('/');
   };
 
   return (
     <Box sx={{ mt: 8 }}>
+      <BackButton 
+        onClick={handleGoBack} 
+      >
+        <ArrowBackIcon sx={{ fontSize: 30, color: '#ffffff' }} />
+      </BackButton>
       <Typography component="h1" variant="h5">
         Авторизация
       </Typography>
@@ -34,7 +90,9 @@ const LoginForm = () => {
           autoComplete="username"
           autoFocus
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleUsernameChange}
+          error={!!error}
+          helperText={error}
         />
         <TextField
           margin="normal"
@@ -46,7 +104,7 @@ const LoginForm = () => {
           id="password"
           autoComplete="current-password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handlePasswordChange}
         />
         <Button
           type="button"
@@ -55,6 +113,7 @@ const LoginForm = () => {
           color="primary"
           sx={{ mt: 3, mb: 2 }}
           onClick={handleLogin}
+          disabled={!isValid}
         >
           Войти
         </Button>
