@@ -36,7 +36,7 @@ const LoginForm = () => {
 
   const handleUsernameChange = (e: { target: { value: any; }; }) => {
     const value = e.target.value;
-    setUsername(value);
+    setUsername(value); 
 
     if (!emailRegex.test(value)) {
       setError('Неверный индекс почты');

@@ -48,7 +48,7 @@ export default function MediaCard1() {
   };
 
   const handleWatchClick = () => {
-    history.push('/Films');  // Перенаправление на страницу Films
+    history.push('/Films');
   };
 
   return (
@@ -77,7 +77,7 @@ export default function MediaCard1() {
         </CardContent>
         <CardActions>
           <Button size="small" onClick={handleOpen}>Поделиться</Button>
-          <Button size="small" onClick={handleWatchClick}>Смотреть</Button>  {/* Добавлен бинд */}
+          <Button size="small" onClick={handleWatchClick}>Смотреть</Button>
         </CardActions>
       </Card>
 

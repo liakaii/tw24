@@ -88,9 +88,9 @@ export default function MediaCard3() {
             border: '2px solid #00BFFF',
             borderRadius: '10px',
             backgroundColor: '#D5C1F9',
-            boxShadow: 'inset 0px 0px 8px rgba(0, 0, 0, 1)', // Легкая внутренняя тень
-            width: '400px',                // Ширина окна
-            height: '190px',               // Высота окна
+            boxShadow: 'inset 0px 0px 8px rgba(0, 0, 0, 1)',
+            width: '400px',
+            height: '190px',
             padding: '20px'
           } 
         }}

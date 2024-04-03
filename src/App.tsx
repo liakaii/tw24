@@ -5,7 +5,8 @@ import LoginPage from './pages/Login/login';
 import Art from './pages/Pictures/Art';
 import NotFound from './pages/404/NotFound';
 import TechnicalWorkPage from './pages/TechnicalWorkPage';
-import MoviesPage from './pages/Films/MoviesPage'; // Импортируем компонент страницы фильмов
+import MoviesPage from './pages/Films/MoviesPage';
+// import Profile from './pages/profile/profile';
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
         <Route path="/Login" component={LoginPage} />
         <Route path="/Art" component={Art} />
         <Route path="/TechnicalWork" component={TechnicalWorkPage} />  
-        <Route path="/Films" component={MoviesPage} />  // Добавляем маршрут для страницы Films
-        <Route component={NotFound} />  // Маршрут для 404 страницы
+        <Route path="/Films" component={MoviesPage} />
+        {/* <Route path="/profile" component={Profile} />*/}
+        <Route component={NotFound} />
       </Switch>
     </Router>
   );

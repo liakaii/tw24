@@ -3,14 +3,14 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import LaptopIcon from '@mui/icons-material/Laptop';
-import TvIcon from '@mui/icons-material/Tv';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+// import LaptopIcon from '@mui/icons-material/Laptop';
+// import TvIcon from '@mui/icons-material/Tv';
+// import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+// import ToggleButton from '@mui/material/ToggleButton';
+// import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
@@ -47,6 +47,8 @@ import p9 from '../../assets/p9.jpg';
 import p10 from '../../assets/p10.gif';
 import p11 from '../../assets/p11.png';
 import p12 from '../../assets/p12.jpg';
+
+
 
 const BackButton = styled(IconButton)({
   position: 'absolute',
@@ -100,23 +102,12 @@ export default function CombinedComponents() {
   const history = useHistory();
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
-  const handleReadClick = () => {
-    history.push('/LogIn');
-  };
+  // const handleReadClick = () => {
+  //   history.push('/LogIn');
+  // };
 
   const handleBackClick = () => {
     history.goBack();
-  };
-
-  const [devices, setDevices] = React.useState(() => ['laptop']);
-
-  const handleDevices = (
-    _event: React.MouseEvent<HTMLElement>,
-    newDevices: string[],
-  ) => {
-    if (newDevices.length) {
-      setDevices(newDevices);
-    }
   };
 
   const toggleDrawer = (open: boolean) => () => {
@@ -128,7 +119,7 @@ export default function CombinedComponents() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, overflow: 'hidden' }}>
+    <Box sx={{ flexGrow: 1, overflow: 'hidden', backgroundImage: `url('path_to_your_background_image.jpg')`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
       <AppBar position="fixed" sx={{ width: '100%' }}>
         <Toolbar>
           <IconButton
@@ -141,6 +132,15 @@ export default function CombinedComponents() {
           >
             <MenuIcon />
           </IconButton>
+          {/* <Typography 
+            variant="h6" 
+            component="div" 
+            sx={{ 
+                flexGrow: 1,
+                marginRight: '335px',  // Двигаем текст вправо на 10 пикселей
+              }}>
+              Список фильмов
+          </Typography> */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -152,22 +152,7 @@ export default function CombinedComponents() {
           </Search>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           </Typography>
-          <ToggleButtonGroup
-            value={devices}
-            onChange={handleDevices}
-            aria-label="device"
-          >
-            <ToggleButton value="laptop" aria-label="laptop">
-              <LaptopIcon />
-            </ToggleButton>
-            <ToggleButton value="tv" aria-label="tv">
-              <TvIcon />
-            </ToggleButton>
-            <ToggleButton value="phone" aria-label="phone">
-              <PhoneAndroidIcon />
-            </ToggleButton>
-          </ToggleButtonGroup>
-          <Button sx={{ marginLeft: '10px' }} color="inherit" onClick={handleReadClick}>Войти</Button>
+          {/* <Button sx={{ marginLeft: '10px' }} color="inherit" onClick={handleReadClick}>Войти</Button> */}
           <BackButton onClick={handleBackClick}>
             <ArrowBackIcon sx={{ fontSize: 30, color: '#ffffff' }} /> 
           </BackButton>
