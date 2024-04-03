@@ -63,25 +63,12 @@ const MoviesPage = () => {
     history.push('/');
   };
 
-  // const handleReadClick = () => {
-  //   history.push('/LogIn');
-  // };
 
   const handleInfoClick = () => {
     history.push('/TechnicalWork');
   };
 
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-  // const [devices, setDevices] = React.useState(() => ['laptop']);
-
-  // const handleDevices = (
-  //   _event: React.MouseEvent<HTMLElement>,
-  //   newDevices: string[],
-  // ) => {
-  //   if (newDevices.length) {
-  //     setDevices(newDevices);
-  //   }
-  // };
 
   const toggleDrawer = (open: boolean) => () => {
     setIsDrawerOpen(open);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/system';
-import { Typography, Paper, IconButton } from '@mui/material';
+import { Typography, Paper, IconButton, ButtonBase } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import PhoneIcon from '@mui/icons-material/Phone';
 import leImage from '../assets/leather.jpg';
@@ -44,6 +44,7 @@ const BoldTypography = styled(Typography)({
 });
 
 const ImageContainer = styled('div')({
+    position: 'relative',
     marginTop: '16px',
     width: '300px',
     height: '170px',
@@ -55,6 +56,16 @@ const Image = styled('img')({
     width: '100%',
     height: '100%',
     objectFit: 'cover',
+});
+
+const InvisibleButton = styled(ButtonBase)({
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    opacity: 0,
+    zIndex: 1,
 });
 
 const PhoneNumberContainer = styled('div')({
@@ -87,6 +98,10 @@ const NearbyNotification: React.FC<NearbyNotificationProps> = () => {
         setIsVisible(false);
     };
 
+    const handleImageClick = () => {
+        window.open('https://youtu.be/dQw4w9WgXcQ?t=1', '_blank');
+    };
+
     if (!isVisible) {
         return null;
     }
@@ -105,6 +120,7 @@ const NearbyNotification: React.FC<NearbyNotificationProps> = () => {
             </TextContainer>
             <ImageContainer>
                 <Image src={leImage} alt="leather.jpg" />
+                <InvisibleButton onClick={handleImageClick} />
             </ImageContainer>
         </StyledNotification>
     );

@@ -3,14 +3,8 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-// import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-// import LaptopIcon from '@mui/icons-material/Laptop';
-// import TvIcon from '@mui/icons-material/Tv';
-// import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-// import ToggleButton from '@mui/material/ToggleButton';
-// import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
@@ -102,10 +96,6 @@ export default function CombinedComponents() {
   const history = useHistory();
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
-  // const handleReadClick = () => {
-  //   history.push('/LogIn');
-  // };
-
   const handleBackClick = () => {
     history.goBack();
   };
@@ -132,15 +122,6 @@ export default function CombinedComponents() {
           >
             <MenuIcon />
           </IconButton>
-          {/* <Typography 
-            variant="h6" 
-            component="div" 
-            sx={{ 
-                flexGrow: 1,
-                marginRight: '335px',  // Двигаем текст вправо на 10 пикселей
-              }}>
-              Список фильмов
-          </Typography> */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -152,7 +133,6 @@ export default function CombinedComponents() {
           </Search>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           </Typography>
-          {/* <Button sx={{ marginLeft: '10px' }} color="inherit" onClick={handleReadClick}>Войти</Button> */}
           <BackButton onClick={handleBackClick}>
             <ArrowBackIcon sx={{ fontSize: 30, color: '#ffffff' }} /> 
           </BackButton>
