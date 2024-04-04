@@ -12,9 +12,6 @@ const BackButton = styled(IconButton)({
   
   borderRadius: '50%',
   padding: '10px',
-  '&:hover': {
-    
-  },
 });
 
 const ScrollToTopButton = styled(IconButton)({
@@ -25,9 +22,6 @@ const ScrollToTopButton = styled(IconButton)({
   
   borderRadius: '50%',
   padding: '10px',
-  '&:hover': {
-    
-  },
 });
 
 const ImageContainer = styled('div')({
@@ -93,19 +87,8 @@ const ImageGeneratorPage: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleImageClick = async (url: string) => {
-    try {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const urlObject = URL.createObjectURL(blob);
-      
-      const link = document.createElement('a');
-      link.href = urlObject;
-      link.download = `Cat_${new Date().getTime()}.jpg`;
-      link.click();
-    } catch (error) {
-      console.error('Error downloading image:', error);
-    }
+  const handleImageClick = (url: string) => {
+    window.open(url, '_blank');
   };
 
   return (
