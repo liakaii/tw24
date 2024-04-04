@@ -72,12 +72,12 @@ export default function MediaCard2() {
             Картинки
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Лучшие фурри картинки, арты и обои за последнюю неделю
+            Лучшие, случайно подообранные, кошачие гифки и фото на любой вкус
           </Typography>
         </CardContent>
         <CardActions>
           <Button size="small" onClick={handleOpen}>Поделиться</Button>
-          <Button size="small" onClick={handleReadClick}>Открыть</Button>
+          <Button size="small" onClick={handleReadClick}>Генерировать</Button>
         </CardActions>
 
         <Dialog 

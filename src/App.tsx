@@ -6,7 +6,7 @@ import Art from './pages/Pictures/Art';
 import NotFound from './pages/404/NotFound';
 import TechnicalWorkPage from './pages/TechnicalWorkPage';
 import MoviesPage from './pages/Films/MoviesPage';
-// import Profile from './pages/profile/profile';
+import ImageGeneratorPage from './pages/imgGEN/ImageGeneratorPage';
 
 function App() {
   return (
@@ -14,10 +14,10 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/Login" component={LoginPage} />
-        <Route path="/Art" component={Art} />
+        <Route path="/Art" component={ImageGeneratorPage} />
         <Route path="/TechnicalWork" component={TechnicalWorkPage} />  
         <Route path="/Films" component={MoviesPage} />
-        {/* <Route path="/profile" component={Profile} />*/}
+        <Route path="/image-generator" component={Art} />
         <Route component={NotFound} />
       </Switch>
     </Router>
