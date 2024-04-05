@@ -3,11 +3,23 @@ import { IconButton } from '@mui/material';
 import { styled } from '@mui/system';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 const BackButton = styled(IconButton)({
   position: 'fixed',
   top: 20,
   left: 20,
+  zIndex: 1,
+  
+  borderRadius: '50%',
+  padding: '10px',
+});
+
+const RefreshImageButton = styled(IconButton)({
+  position: 'fixed',
+  top: '50%',  
+  left: 20,  
+  transform: 'translateY(-50%)', 
   zIndex: 1,
   
   borderRadius: '50%',
@@ -91,11 +103,18 @@ const ImageGeneratorPage: React.FC = () => {
     window.open(url, '_blank');
   };
 
+  const handleRefreshImages = () => {
+    fetchAllImages(); 
+  };
+
   return (
     <div>
       <BackButton onClick={handleGoBack}>
         <ArrowBackIcon sx={{ fontSize: 30, color: '#ffffff' }} />
       </BackButton>
+      <RefreshImageButton onClick={handleRefreshImages}> 
+        <RefreshIcon sx={{ fontSize: 30, color: '#ffffff' }} />
+      </RefreshImageButton>
       <ScrollToTopButton onClick={handleScrollToTop}>
         <KeyboardArrowUpIcon sx={{ fontSize: 30, color: '#ffffff' }} />
       </ScrollToTopButton>

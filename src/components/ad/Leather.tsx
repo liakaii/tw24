@@ -3,7 +3,7 @@ import { styled } from '@mui/system';
 import { Typography, Paper, IconButton, ButtonBase } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import PhoneIcon from '@mui/icons-material/Phone';
-import leImage from '../assets/leather.jpg';
+import leImage from '../../assets/leather.jpg';
 
 interface NearbyNotificationProps {
     username: string;

@@ -24,7 +24,7 @@ export default function MediaCard2() {
   const [link] = useState(window.location.href);
 
   const handleReadClick = () => {
-    history.push('/Art');
+    history.push('/image-generator');
   };
 
   const handleOpen = () => {
