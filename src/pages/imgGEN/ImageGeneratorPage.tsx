@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { IconButton } from '@mui/material';
 import { styled } from '@mui/system';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import CatImageAPI from '../../components/CatImageAPI';
 
 const BackButton = styled(IconButton)({
   position: 'fixed',
   top: 20,
   left: 20,
   zIndex: 1,
-  
   borderRadius: '50%',
   padding: '10px',
 });
@@ -21,7 +21,6 @@ const RefreshImageButton = styled(IconButton)({
   left: 20,  
   transform: 'translateY(-50%)', 
   zIndex: 1,
-  
   borderRadius: '50%',
   padding: '10px',
 });
@@ -31,7 +30,6 @@ const ScrollToTopButton = styled(IconButton)({
   bottom: 20,
   left: 20,
   zIndex: 1,
-  
   borderRadius: '50%',
   padding: '10px',
 });
@@ -61,37 +59,9 @@ const ImageWrapper = styled('div')({
 });
 
 const ImageGeneratorPage: React.FC = () => {
-  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [refreshKey, setRefreshKey] = useState(0); // Ключ для принудительного обновления компонента CatImageAPI
 
-  const fetchAllImages = async () => {
-    let allImages: string[] = [];
-    let currentPage = 1;
-    const limit = 100;
-
-    while (allImages.length < limit) {
-      try {
-        const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10&page=${currentPage}`);
-        const data = await response.json();
-        const urls = data.map((item: any) => item.url);
-        
-        if (urls.length === 0) break;
-
-        allImages = [...allImages, ...urls];
-        currentPage++;
-      } catch (error) {
-        console.error('Error fetching images:', error);
-        break;
-      }
-    }
-
-    setImageUrls(allImages.slice(0, limit));
-  };
-
-  useEffect(() => {
-    fetchAllImages();
-  }, []);
-
-  const handleGoBack = () => {
+  const handleBackClick = () => {
     window.history.back();
   };
 
@@ -104,13 +74,20 @@ const ImageGeneratorPage: React.FC = () => {
   };
 
   const handleRefreshImages = () => {
-    fetchAllImages(); 
+    // Увеличиваем ключ, чтобы принудительно обновить компонент CatImageAPI
+    setRefreshKey(prevKey => prevKey + 1);
   };
 
   return (
     <div>
-      <BackButton onClick={handleGoBack}>
-        <ArrowBackIcon sx={{ fontSize: 30, color: '#ffffff' }} />
+      <BackButton>
+        <IconButton
+          sx={{ position: 'absolute', top: 80, left: 5, zIndex: 1, color: 'rgba(255, 255, 255, 1)' }}
+          aria-label="back"
+          onClick={handleBackClick}
+        >
+          <ArrowBackIcon />
+        </IconButton>
       </BackButton>
       <RefreshImageButton onClick={handleRefreshImages}> 
         <RefreshIcon sx={{ fontSize: 30, color: '#ffffff' }} />
@@ -119,13 +96,17 @@ const ImageGeneratorPage: React.FC = () => {
         <KeyboardArrowUpIcon sx={{ fontSize: 30, color: '#ffffff' }} />
       </ScrollToTopButton>
       <h1>Ты стал кошатником</h1>
-      <ImageContainer>
-        {imageUrls.map((url, index) => (
-          <ImageWrapper key={index}>
-            <Image src={url} alt={`Cat ${index + 1}`} onClick={() => handleImageClick(url)} />
-          </ImageWrapper>
-        ))}
-      </ImageContainer>
+      <CatImageAPI key={refreshKey} limit={100} onClick={handleImageClick}>
+        {(imageUrls: string[]) => (
+          <ImageContainer>
+            {imageUrls.map((url, index) => (
+              <ImageWrapper key={index}>
+                <Image src={url} alt={`Cat ${index + 1}`} onClick={() => handleImageClick(url)} />
+              </ImageWrapper>
+            ))}
+          </ImageContainer>
+        )}
+      </CatImageAPI>
     </div>
   );
 };

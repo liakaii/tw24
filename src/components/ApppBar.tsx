@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -6,16 +5,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';  // <-- Добавленный импорт
 import MenuIcon from '@mui/icons-material/Menu';
-import LaptopIcon from '@mui/icons-material/Laptop';
-import TvIcon from '@mui/icons-material/Tv';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
-import { useHistory } from 'react-router-dom';
+import { alpha, styled } from '@mui/material/styles';
+import { Link, useHistory } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -23,7 +16,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import MailIcon from '@mui/icons-material/Mail';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import PhotoIcon from '@mui/icons-material/Photo';
 import ForumIcon from '@mui/icons-material/Forum';
@@ -31,6 +23,17 @@ import VideoCallIcon from '@mui/icons-material/VideoCall';
 import SettingsIcon from '@mui/icons-material/Settings';
 import InfoIcon from '@mui/icons-material/Info';
 import SupportIcon from '@mui/icons-material/Support';
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from '@mui/material/InputBase';
+
+interface AppBarProps {
+  setUser: React.Dispatch<React.SetStateAction<{ avatar: string } | null>>;
+  user: { avatar: string } | null;
+}
+
+const StyledAvatar = styled(AccountCircleIcon)({
+  fontSize: 40,
+});
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -71,23 +74,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function CombinedComponents() {
+const AppBarComponent: React.FC<AppBarProps> = ({ user }) => {
   const history = useHistory();
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-  const [devices, setDevices] = React.useState(() => ['laptop']);
-
-  const handleDevices = (
-    _event: React.MouseEvent<HTMLElement>,
-    newDevices: string[],
-  ) => {
-    if (newDevices.length) {
-      setDevices(newDevices);
-    }
-  };
-
-  const handleReadClick = () => {
-    history.push('/LogIn');
-  };
 
   const toggleDrawer = (open: boolean) => () => {
     setIsDrawerOpen(open);
@@ -95,6 +84,7 @@ export default function CombinedComponents() {
 
   const handleInfoClick = () => {
     history.push('/TechnicalWork');
+    toggleDrawer(false)();
   };
 
   return (
@@ -112,56 +102,24 @@ export default function CombinedComponents() {
             <MenuIcon />
           </IconButton>
 
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-           
-          </Typography>
-
-          <ToggleButtonGroup
-            value={devices}
-            onChange={handleDevices}
-            aria-label="device"
-          >
-            <ToggleButton value="laptop" aria-label="laptop">
-              <LaptopIcon />
-            </ToggleButton>
-            <ToggleButton value="tv" aria-label="tv">
-              <TvIcon />
-            </ToggleButton>
-            <ToggleButton value="phone" aria-label="phone">
-              <PhoneAndroidIcon />
-            </ToggleButton>
-          </ToggleButtonGroup>
-
-          <Button sx={{ marginLeft: '10px' }} color="inherit" onClick={handleReadClick}>Войти</Button>
-
           <Drawer 
-    anchor="left" 
-    open={isDrawerOpen} 
-    onClose={toggleDrawer(false)}
-    sx={{
-        width: 250,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
-            width: 250,
-            boxSizing: 'border-box',
-            background: 'linear-gradient(to bottom, #9AB9EF, rgba(26, 26, 26, 1 ))',
-            opacity: 1,
-        },
-    }}
->
+            anchor="left" 
+            open={isDrawerOpen} 
+            onClose={toggleDrawer(false)}
+            sx={{
+              width: 250,
+              flexShrink: 0,
+              '& .MuiDrawer-paper': {
+                width: 250,
+                boxSizing: 'border-box',
+                background: 'linear-gradient(to bottom, #9AB9EF, rgba(26, 26, 26, 1 ))',
+                opacity: 1,
+              },
+            }}
+          >
             <div
-                onClick={toggleDrawer(false)}
-                onKeyDown={toggleDrawer(false)}
+              onClick={toggleDrawer(false)}
+              onKeyDown={toggleDrawer(false)}
             >
               <List>
                 <ListItem button onClick={handleInfoClick}>
@@ -195,8 +153,8 @@ export default function CombinedComponents() {
                 </ListItem>
                 <Divider />
                 <ListItem button onClick={handleInfoClick}>
-                <ListItemIcon><InfoIcon /></ListItemIcon>
-                <ListItemText primary="Информация" />
+                  <ListItemIcon><InfoIcon /></ListItemIcon>
+                  <ListItemText primary="Информация" />
                 </ListItem>
                 <ListItem button onClick={handleInfoClick}>
                   <ListItemIcon><SupportIcon /></ListItemIcon>
@@ -205,8 +163,32 @@ export default function CombinedComponents() {
               </List>
             </div>
           </Drawer>
+
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            
+          </Typography>
+
+          {user ? (
+            <StyledAvatar />
+          ) : (
+            <Link to="/Login">
+              <Button color="inherit">Войти</Button>
+            </Link>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
+
+export default AppBarComponent;

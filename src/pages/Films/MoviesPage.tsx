@@ -114,7 +114,9 @@ const MoviesPage = () => {
   }));
 
   return (
+    
     <Box sx={{ flexGrow: 1, overflow: 'hidden' }}>
+      
       <AppBar position="fixed" sx={{ width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
         <Toolbar>
           <IconButton

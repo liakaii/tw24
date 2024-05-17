@@ -4,6 +4,12 @@ import { styled } from '@mui/system';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useHistory } from 'react-router-dom';
 
+
+
+interface LoginPageProps {
+  setUser: React.Dispatch<React.SetStateAction<{ avatar: string } | null>>;
+}
+
 const StyledLoginForm = styled('form')({
   display: 'flex',
   flexDirection: 'column',
@@ -17,15 +23,11 @@ const BackButton = styled(IconButton)({
   top: 20,
   left: 20,
   zIndex: 1,
-  
   borderRadius: '50%',
   padding: '10px',
-  '&:hover': {
-    
-  },
 });
 
-const LoginForm = () => {
+const LoginForm: React.FC<LoginPageProps> = ({ setUser }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -34,9 +36,9 @@ const LoginForm = () => {
 
   const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-  const handleUsernameChange = (e: { target: { value: any; }; }) => {
+  const handleUsernameChange = (e: { target: { value: any } }) => {
     const value = e.target.value;
-    setUsername(value); 
+    setUsername(value);
 
     if (!emailRegex.test(value)) {
       setError('Неверный индекс почты');
@@ -47,7 +49,7 @@ const LoginForm = () => {
     }
   };
 
-  const handlePasswordChange = (e: { target: { value: any; }; }) => {
+  const handlePasswordChange = (e: { target: { value: any } }) => {
     const value = e.target.value;
     setPassword(value);
     setIsValid(value.length > 0 && emailRegex.test(username));
@@ -57,20 +59,26 @@ const LoginForm = () => {
     if (error || !isValid) {
       return;
     }
-
+  
+    setUser({ avatar: '../assets/av1.jpg' });  // Измените путь
     history.push('/');
   };
+  
 
-  const handleGoBack = () => {
+  const handleBackClick = () => {
     history.push('/');
   };
 
   return (
     <Box sx={{ mt: 8 }}>
-      <BackButton 
-        onClick={handleGoBack} 
-      >
-        <ArrowBackIcon sx={{ fontSize: 30, color: '#ffffff' }} />
+      <BackButton>
+      <IconButton
+          sx={{ position: 'absolute', top: 80, left: -5, zIndex: 5, color: 'rgba(255, 255, 255, 1)' }}
+          aria-label="back"
+          onClick={handleBackClick}
+        >
+          <ArrowBackIcon />
+        </IconButton>
       </BackButton>
       <Typography component="h1" variant="h5">
         Авторизация
@@ -120,10 +128,10 @@ const LoginForm = () => {
   );
 };
 
-const LoginPage = () => {
+const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
   return (
     <Container component="div" maxWidth="xs">
-      <LoginForm />
+      <LoginForm setUser={setUser} />
     </Container>
   );
 };

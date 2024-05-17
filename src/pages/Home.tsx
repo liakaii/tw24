@@ -5,18 +5,18 @@ import MediaCard2 from '../components/MediaCard2.tsx';
 import MediaCard3 from '../components/MediaCard3.tsx';
 import Leather from '../components/ad/Leather.tsx';
 import Plitka from '../components/ad/plitka.tsx';
-// import { useState } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function Home() {
-  // const [count, setCount] = useState(0);
+  const [user, setUser] = useState<{ avatar: string } | null>(null);
 
   return (
     <>
       <h1>
       <div className="spacer"></div>Предложения на сегодня<div className="spacer"></div>
       </h1>
-        <div><ApppBar /></div>
+        <div><ApppBar setUser={setUser} user={user} /></div>
 
         <div><MediaCard1 /></div>
 
@@ -34,9 +34,6 @@ function Home() {
         <Link to="/Art"><button>Сохранёные картинки</button></Link>
 
       <div className="card">
-        {/* <button onClick={() => setCount((count) => count + 1)}>
-          {count}
-        </button> */}
         <p>
           Жми на кнопку каждый день и через неделю...
         </p>

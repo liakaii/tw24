@@ -16,14 +16,20 @@ const BackButton = styled(IconButton)({
 });
 
 const NotFound = () => {
-  const handleBack = () => {
+  const handleBackClick = () => {
     window.history.back();
   };
 
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <BackButton onClick={handleBack}>
-        <ArrowBackIcon sx={{ fontSize: 30, color: '#ffffff' }} />
+      <BackButton>
+      <IconButton
+          sx={{ position: 'absolute', top: 80, left: -5, zIndex: 5, color: 'rgba(255, 255, 255, 1)' }}
+          aria-label="back"
+          onClick={handleBackClick}
+        >
+          <ArrowBackIcon />
+        </IconButton>
       </BackButton>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
         <Typography variant="h4" gutterBottom>
